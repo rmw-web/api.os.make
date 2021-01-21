@@ -29,19 +29,22 @@ cd $tmp
 
 openssldir=openssl-1.1.1i
 if [[ ! -d "$openssldir" ]] ; then
-wget -c https://www.openssl.org/source/$openssldir.tar.gz
-tar zxcf $openssldir.tar.gz
+openssltgz=$openssldir.tar.gz
+wget -c https://www.openssl.org/source/$openssltgz
+tar zxcf $openssltgz
+rm -rf $openssltgz
 fi
 
 version=1.19.3.1
-tardir=openresty-$version
-tarname=$tardir.tar.gz
-if [[ ! -d "$tardir" ]] ; then
-wget -c https://openresty.org/download/$tarname
-tar zxvf $tarname
+xdir=openresty-$version
+tgz=$xdir.tar.gz
+if [[ ! -d "$xdir" ]] ; then
+wget -c https://openresty.org/download/$tgz
+tar zxvf $tgz
+rm -rf $tgz
 fi
 
-cd $tardir
+cd $xdir
 
 ./configure --prefix=/opt/openresty --with-cc-opt="-I/usr/local/include" --with-luajit --without-http_redis2_module --with-ld-opt="-L/usr/local/lib" --with-openssl="$tmp/$openssldir"
 
@@ -49,6 +52,4 @@ make
 
 # mv src/redis-server $_DIR/../os.$os/redis-server.exe
 #
-# rm -rf $tmp/$redisDir
-# cd ..
-# rm -rf $tarname
+# cd $tmp && rm -rf $openssldir && rm -rf $xdir
