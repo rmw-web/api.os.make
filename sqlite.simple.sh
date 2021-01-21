@@ -30,6 +30,8 @@ cd output/bin/
 os=$(node -e "console.log(process.platform.toLowerCase())")
 
 ext=${$(ls libsimple.*)##*.}
-mv libsimple.$ext $_DIR/../os.$os/sqlite/simple.$ext
+outdir=$_DIR/../os.$os/sqlite
+mkdir -p $outdir
+mv libsimple.$ext $outdir/simple.$ext
 
 rm -rf $tmp/simple
