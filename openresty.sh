@@ -45,11 +45,12 @@ rm -rf $tgz
 fi
 
 cd $xdir
-
-./configure --prefix=/opt/openresty --with-cc-opt="-I/usr/local/include" --with-luajit --without-http_redis2_module --with-ld-opt="-L/usr/local/lib" --with-openssl="$tmp/$openssldir"
+installdir=$tmp/openresty
+mkdir -p $installdir
+./configure --prefix=$installdir --with-cc-opt="-I/usr/local/include" --with-luajit --without-http_redis2_module --with-ld-opt="-L/usr/local/lib" --with-openssl="$tmp/$openssldir"
 
 make
-
+make install
 # mv src/redis-server $_DIR/../os.$os/redis-server.exe
 #
 # cd $tmp && rm -rf $openssldir && rm -rf $xdir
