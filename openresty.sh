@@ -52,4 +52,4 @@ mkdir -p $installdir
 make
 make install
 cp $installdir/nginx/sbin/nginx $_DIR/../os.$os/openresty.exe
-cd $tmp && rm -rf $openssldir && rm -rf $xdir
+cd $tmp && rm -rf $openssldir && rm -rf $xdir && rm -rf $installdir
