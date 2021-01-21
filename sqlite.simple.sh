@@ -24,4 +24,9 @@ os=$(node -e "console.log(process.platform.toLowerCase())")
 
 cd ..
 
-mv output/bin/libsimple.* $_DIR/../os.$os
+ext=${$(ls libsimple.*)##*.}
+mv output/bin/libsimple.$ext $_DIR/../os.$os/sqlite/simple.$ext
+
+cd ..
+
+rm -rf simple
