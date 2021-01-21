@@ -51,6 +51,5 @@ mkdir -p $installdir
 
 make
 make install
-# mv src/redis-server $_DIR/../os.$os/redis-server.exe
-#
-# cd $tmp && rm -rf $openssldir && rm -rf $xdir
+cp $installdir/nginx/sbin/nginx $_DIR/../os.$os/openresty.exe
+cd $tmp && rm -rf $openssldir && rm -rf $xdir
