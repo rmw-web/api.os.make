@@ -12,10 +12,10 @@ mkdir -p $tmp
 cd $tmp
 
 version=6.2-rc2
-redisTar=$version.tar.gz
-wget -c https://github.com/redis/redis/archive/$redisTar
+tarname=$version.tar.gz
+wget -c https://github.com/redis/redis/archive/$tarname
 
-tar zxvf $redisTar
+tar zxvf $tarname
 
 redisDir=redis-$version
 
@@ -29,4 +29,4 @@ mv src/redis-server $_DIR/../os.$os/redis-server.exe
 
 rm -rf $tmp/$redisDir
 cd ..
-rm -rf $redisTar
+rm -rf $tarname

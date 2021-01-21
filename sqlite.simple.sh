@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 set -e
 set -x
@@ -11,22 +11,25 @@ mkdir -p $tmp
 
 cd $tmp
 
+if [[ ! -d "simple" ]] ; then
 git clone git@github.com:rmw-lib/simple.git --depth=1
-
 cd simple
+else
+cd simple
+git pull
+fi
 
+rm -rf build
 mkdir build; cd build
 cmake ..
 make -j 12
 make install
+cd ..
+cd output/bin/
 
 os=$(node -e "console.log(process.platform.toLowerCase())")
 
-cd ..
-
 ext=${$(ls libsimple.*)##*.}
-mv output/bin/libsimple.$ext $_DIR/../os.$os/sqlite/simple.$ext
+mv libsimple.$ext $_DIR/../os.$os/sqlite/simple.$ext
 
-cd ..
-
-rm -rf simple
+rm -rf $tmp/simple
