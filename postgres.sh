@@ -25,6 +25,7 @@ unzip postgres.zip
 
 mkdir -p postgres
 tar -xvf postgres-*.txz -C ./postgres
+rm -rf postgres/bin/pg_ctl*
 
 osdir=$_DIR/../os.$os
 rm -rf $osdir/postgres
